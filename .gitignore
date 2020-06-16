@@ -107,3 +107,6 @@ capes/
 users/
 items/
 models/
+configs/
+**/.DS_Store
+config.json

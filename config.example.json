@@ -1,0 +1,9 @@
+{
+    "blockBannerCapes": false,
+    "blockClassicCapes": false,
+    "blockOFCustomCapes": false,
+    "blockPlayerModels": false,
+    "blockRemoteConfig": false,
+    "blockUnhandledRequests": true,
+    "listenPort": 8080
+}

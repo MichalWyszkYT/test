@@ -4,15 +4,7 @@ const sharp = require('sharp');
 const fs = require('fs');
 const http = require('http');
 
-const config = {
-    blockBannerCapes: true,
-    blockClassicCapes: false,
-    blockOFCustomCapes: true,
-    blockPlayerModels: true,
-    blockRemoteConfig: true,
-    blockUnhandledRequests: true,
-};
-const listenPort = '8080';
+const config = require("./config.json")
 const optifineHost = '107.182.233.85';
 const OFCustomCapesUsers = [
     'sp614x',
@@ -104,4 +96,4 @@ polka.get('/*', (req, res) => {
     }
 });
 
-polka.listen(listenPort);
+polka.listen(config.listenPort);
