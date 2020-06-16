@@ -22,6 +22,10 @@ const OFCustomCapesUsers = [
     'jckt',
     'J4K___', // jckt alternates his username a lot
 ];
+const capeWidths = {
+    classic: 46,
+    banner: 2 * 46,
+};
 
 const serve = (path, res) => {
     const file = fs.createReadStream(path);
@@ -43,23 +47,31 @@ polka.get('/capes/:user.png', (req, res) => {
     const path = `${__dirname}/capes/${req.params.user}.png`;
     if (fs.existsSync(path)) {
         serve(path, res);
-    // If all three are blocked, why bother
-    } else if (config.blockBannerCapes
-        && config.blockClassicCapes
-        && config.blockOFCustomCapes) {
+    } else {
         if (config.blockOFCustomCapes
             && OFCustomCapesUsers.includes(req.params.user)) {
             notFound(res);
         }
         http.get(`http://${optifineHost}/capes/${req.params.user}.png`, (data) => {
             if (data.statusCode === 200) {
-                send(res, 200, data); // no processing yet
+                const imageProcessor = sharp();
+                data.pipe(imageProcessor);
+                imageProcessor.metadata().then((metadata) => {
+                    if (metadata.width === capeWidths.classic
+                        && !config.blockClassicCapes) {
+                        send(res, 200, imageProcessor.png());
+                    } else if (metadata.width === capeWidths.banner
+                            && !config.blockBannerCapes) {
+                        send(res, 200, imageProcessor.png());
+                    } else {
+                        // something else
+                        notFound(res);
+                    }
+                });
             } else {
                 notFound(res);
             }
         });
-    } else {
-        notFound(res);
     }
 });
 polka.get('/users/:user.cfg', (req, res) => {
