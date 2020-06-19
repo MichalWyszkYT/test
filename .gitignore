@@ -103,10 +103,11 @@ dist
 # TernJS port file
 .tern-port
 
-capes/
-users/
-items/
-models/
-configs/
 **/.DS_Store
-config.json
+
+# suck it up, i put personal files here
+adryd/
+
+data/
+config.js
+users.js
