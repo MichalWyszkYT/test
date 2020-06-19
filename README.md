@@ -32,8 +32,11 @@ then, one must set their hosts file (or use another method to change DNS) to poi
 # localhost is used to configure the loopback interface
 # when the system is booting.  Do not change this entry.
 ##
-127.0.0.1	    localhost
+127.0.0.1       localhost
 255.255.255.255	broadcasthost
 ::1             localhost
+# if optifineProxy and nginx are running on the local machine
 127.0.0.1       s.optifine.net
+# if a friend is hosting an optifineProxy instance
+(friends ip)    s.optifine.net
 ```
