@@ -9,9 +9,10 @@ const userData = require('./users.js');
 
 const optifineHost = '107.182.233.85';
 const OFCustomCapesUsers = [
-    'sp614x',
+    // 'sp614x', // sp doesn't have a custom cape at the moment
     'filefolder3',
     'EskiMojo14',
+    'therealokin',
     'GibMinecon',
     'jckt',
     'J4K___', // jckt alternates his username a lot
