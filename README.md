@@ -1,6 +1,11 @@
 # optifineProxy
 Self-MITM requests to optifine's cape server!
 
+Please read LICENSE.md for what you can and cannot do with this software
+I will not be providing direct support for this software, though you may open issues
+I'm assuming sp614x wanted to keep some of these features to be special for themself or their friends, so preferabily don't host public instances, and don't abuse this. 
+sp, if you're reading this and would like anything changed let me know
+
 ### Installation
 the basic shell stuff
 ```sh
