@@ -12,6 +12,7 @@ const OFCustomCapesUsers = [
     'sp614x',
     'filefolder3',
     'EskiMojo14',
+    'therealokin',
     'GibMinecon',
     'jckt',
     'J4K___', // jckt alternates his username a lot
@@ -36,7 +37,13 @@ const notFound = (res) => {
     send(res, 404, 'Not found');
 };
 
-function getPrefs(ipAddress) {
+function getPrefs(req) {
+    let ipAddress = '';
+    if (req.headers['x-real-ip']) {
+        ipAddress = req.headers['x-real-ip'];
+    } else {
+        ipAddress = req.connection.remoteAddress;
+    }
     if (userData.ipAddresses[ipAddress]
         && userData.users[userData.ipAddresses[ipAddress]]) {
         const userPrefs = Object.assign(
@@ -60,7 +67,7 @@ function shouldServeCustom(user, prefs) {
 const polka = Polka();
 
 polka.get('/capes/:user.png', (req, res) => {
-    const prefs = getPrefs(req.headers['x-real-ip']);
+    const prefs = getPrefs(req);
     const path = `${__dirname}/${prefs.dataFolder}/capes/${req.params.user}.png`;
     if (fs.existsSync(path) && shouldServeCustom(req.params.user, prefs)) {
         serve(path, res);
@@ -93,7 +100,7 @@ polka.get('/capes/:user.png', (req, res) => {
 });
 
 polka.get('/users/:user.cfg', (req, res) => {
-    const prefs = getPrefs(req.headers['x-real-ip']);
+    const prefs = getPrefs(req);
     const path = `${__dirname}/${prefs.dataFolder}/configs/${req.params.user}.cfg`;
     if (fs.existsSync(path) && shouldServeCustom(req.params.user, prefs)) {
         serve(path, res);
@@ -105,7 +112,7 @@ polka.get('/users/:user.cfg', (req, res) => {
 });
 
 polka.get('/items/:model/:modelName.cfg', (req, res) => {
-    const prefs = getPrefs(req.headers['x-real-ip']);
+    const prefs = getPrefs(req);
     const path = `${__dirname}/${prefs.dataFolder}/items/${req.params.model}/${req.params.model}.cfg`;
     if (fs.existsSync(path)
         && shouldServeCustom(req.params.user, prefs)
@@ -119,7 +126,7 @@ polka.get('/items/:model/:modelName.cfg', (req, res) => {
 });
 
 polka.get('/items/:model/users/:user.png', (req, res) => {
-    const prefs = getPrefs(req.headers['x-real-ip']);
+    const prefs = getPrefs(req);
     const path = `${__dirname}/${prefs.dataFolder}/items/${req.params.model}/users/${req.params.user}.png`;
     if (fs.existsSync(path)
         && shouldServeCustom(req.params.user, prefs)
@@ -137,12 +144,12 @@ polka.get('/ipAddress', (req, res) => {
 });
 
 polka.get('/myConfig', (req, res) => {
-    const prefs = getPrefs(req.headers['x-real-ip']);
+    const prefs = getPrefs(req);
     send(res, 200, prefs, { 'content-type': 'application/json' });
 });
 
 polka.get('/*', (req, res) => {
-    const prefs = getPrefs(req.headers['x-real-ip']);
+    const prefs = getPrefs(req);
     if (prefs.blockUnhandledRequests) {
         notFound(res);
     } else {
