@@ -21,12 +21,14 @@ const capeWidths = {
     classic: 46,
     banner: 2 * 46,
 };
-const png = { 'content-type': 'image/png' }; // just short form ig
-
-const serve = (path, res) => {
+const contentTypes = {
+    png: { 'content-type': 'image/png' },
+    json: { 'content-type': 'application/json'},
+}
+const serve = (path, res, contentType = {}) => {
     const file = fs.createReadStream(path);
     // No need to set content type because Optifine doesn't have checks for that
-    send(res, 200, file, png);
+    send(res, 200, file, contentType);
 };
 const pass = (url, res) => {
     http.get(`http://${optifineHost}${url}`, (data) => {
@@ -70,7 +72,7 @@ polka.get('/capes/:user.png', (req, res) => {
     const prefs = getPrefs(req);
     const path = `${__dirname}/${prefs.dataFolder}/capes/${req.params.user}.png`;
     if (fs.existsSync(path) && shouldServeCustom(req.params.user, prefs)) {
-        serve(path, res);
+        serve(path, res, contentTypes.png);
     } else {
         if (prefs.blockOFCustomCapes
             && OFCustomCapesUsers.includes(req.params.user)) {
@@ -103,7 +105,7 @@ polka.get('/users/:user.cfg', (req, res) => {
     const prefs = getPrefs(req);
     const path = `${__dirname}/${prefs.dataFolder}/configs/${req.params.user}.cfg`;
     if (fs.existsSync(path) && shouldServeCustom(req.params.user, prefs)) {
-        serve(path, res);
+        serve(path, res, contentTypes.json);
     } else if (config.blockRemoteConfig) {
         notFound(res);
     } else {
@@ -117,7 +119,7 @@ polka.get('/items/:model/:modelName.cfg', (req, res) => {
     if (fs.existsSync(path)
         && shouldServeCustom(req.params.user, prefs)
         && prefs.allowCustomPlayerModels) {
-        serve(path, res);
+        serve(path, res, contentTypes.json);
     } else if (prefs.blockPlayerModels) {
         notFound(res);
     } else {
@@ -131,7 +133,7 @@ polka.get('/items/:model/users/:user.png', (req, res) => {
     if (fs.existsSync(path)
         && shouldServeCustom(req.params.user, prefs)
         && prefs.allowCustomPlayerModels) {
-        serve(path, res);
+        serve(path, res, contentTypes.png);
     } else if (prefs.blockPlayerModels) {
         notFound(res);
     } else {
