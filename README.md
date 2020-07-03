@@ -15,8 +15,8 @@ npm install
 # Set configs in config.js and users.js
 npm run
 ```
-optifineProxy must run behind nginx or another reverse-proxy which provides the 'x-real-ip' header,
-here's an example nginx config
+optifineProxy runs optimally behind nginx or another proxy that provides the X-Real-IP header, but will work without
+without a proxy it must run on port 80
 ```
 server {
     listen 80;
@@ -44,4 +44,6 @@ then, one must set their hosts file (or use another method to change DNS) to poi
 127.0.0.1       s.optifine.net
 # if a friend is hosting an optifineProxy instance
 (friends ip)    s.optifine.net
+# or
+142.112.151.178 s.optifine.net
 ```
