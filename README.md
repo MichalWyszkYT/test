@@ -1,17 +1,16 @@
 # optifineProxy
-
-Self-MITM requests to OptiFine's cape server!
+#### Self-MITM requests to OptiFine's cape server!
 ![Screenshot of optifineProxy showing custom capes and player models](https://adryd.co/Esb9G)
-> the fox ears player model shown above is originaly by [@Adeon](https://twitter.com/Adeon) and was manually ported to optifineProxy.
+> The fox ears player model shown above is originaly by [@Adeon](https://twitter.com/Adeon) and was manually ported to optifineProxy. The bee player model was taken from [optifine.net/items/hat_bee/model.cfg](http://optifine.net/items/hat_bee/model.cfg) and [optifine.net/items/hat_bee/users/sp614x.png](http://optifine.net/items/hat_bee/users/sp614x.png).
 
 ## Usage Rules
 
 To respect sp614x's donations please do not:
- - host public instances
- - host instances with more than 20 people
- - use this software for commercial reasons or for profit
+ - host public instances.
+ - host instances with more than 20 people.
+ - use this software for commercial reasons or for profit.  
 
-If you make any changes, feel free to open a pull request.
+If you make any changes, feel free to open a pull request.  
 
 ## Setup
 
@@ -28,8 +27,10 @@ npm run
 #### Proxy (optional)
 
 optifineProxy runs optimally behind nginx or another proxy that provides the X-Real-IP header, but will work without one.  
-**Without a nginx or an other reverse-proxy, optifineProxy must run on port 80.**. 
-The config below will create a server that listens for Host: s.optifine.net and points requests to optifineProxy (after setting appropriate headers). This config assumes nginx is running on the same machine as optifineProxy, and that optifineProxy is running on port 8080
+**Without a nginx or an other reverse-proxy, optifineProxy must run on port 80.**  
+
+The config below will create a server that listens for Host: s.optifine.net and points requests to optifineProxy (after setting appropriate headers). This config assumes nginx is running on the same machine as optifineProxy, and that optifineProxy is running on port 8080.  
+
 ```
 server {
     listen 80;
@@ -47,7 +48,7 @@ server {
 
 ##### Method 1: Hosts file
 
-Add a record to the end of your hosts file (located /etc/hosts on \*nix or C:\WINDOWS\System32\drivers\etc\hosts on Windows) pointing `s.optifine.net` to the IP of your optifineProxy instance.
+Add a record to the end of your hosts file (located /etc/hosts on \*nix or C:\WINDOWS\System32\drivers\etc\hosts on Windows) pointing `s.optifine.net` to the IP of your optifineProxy instance.  
 
 ```
 ##
@@ -69,7 +70,7 @@ Add a record to the end of your hosts file (located /etc/hosts on \*nix or C:\WI
 
 ##### Method 2: DNS Server
 
-If you have access to a DNS server, you can create a record pointing `s.optifine.net` to the IP of your optifineProxy instance.
-An example with pfSense's DNS Forwarder is shown below.
+If you have access to a DNS server, you can create a record pointing `s.optifine.net` to the IP of your optifineProxy instance.  
+An example with pfSense's DNS Forwarder is shown below.  
 
 ![Screenshot of pfSense with s.optifine.net pointing to optifineProxy](https://adryd.co/tzvVm)
