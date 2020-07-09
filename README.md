@@ -12,6 +12,12 @@ To respect sp614x's donations please do not:
 
 If you make any changes, feel free to open a pull request.  
 
+#### Notice
+
+For some reason, cape rendering in either Minecraft or OptiFine is blocking, so be careful that your server stays up, or people who use your optifineProxy instance will not have their world render, and players will not have skins.
+
+Perhaps I should open an issue about this, but oh well
+
 ## Setup
 
 #### Cloning and starting
@@ -166,14 +172,14 @@ module.exports = {
 
 Some example data can be found [here](https://github.com/adryd325/optifineProxyData)
 
-capes: 
+capes:  
 /capes/:user.png
 
-user configs:
+user configs:  
 /users/:user.cfg
 
-models:
+models:  
 /items/:model/model.cfg
 
-model textures:
+model textures:  
 /items/:model/users/:user.png
