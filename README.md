@@ -16,7 +16,7 @@ If you make any changes, feel free to open a pull request.
 
 For some reason, cape rendering in either Minecraft or OptiFine is blocking, so be careful that your server stays up, or people who use your optifineProxy instance will not have their world render, and players will not have skins.
 
-Perhaps I should open an issue about this, but oh well
+Perhaps I should open an issue about this with Minecraft or OptiFine, but oh well
 
 ## Setup
 
