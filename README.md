@@ -3,6 +3,16 @@
 ![Screenshot of optifineProxy showing custom capes and player models](https://adryd.co/Esb9G)
 > The fox ears player model shown above is originaly by [@Adeon](https://twitter.com/Adeon) and was manually ported to optifineProxy. The bee player model was taken from [optifine.net/items/hat_bee/model.cfg](http://optifine.net/items/hat_bee/model.cfg) and [optifine.net/items/hat_bee/users/sp614x.png](http://optifine.net/items/hat_bee/users/sp614x.png).
 
+### Inspiration
+
+I originally made this as I didn't like OptiFine's banner capes that much as I felt their higher resolution clashed with Minecraft's style. While developing it I noticed that there were custom configs and custom player models, so I added support for them. Eventually @NotNite convinced me to publish this.
+
+### Special thanks
+
+@MStrodl: Helping me with data streams and suggesting Polka and Node-Sharp.
+@NotNite: Convincing me to clean the code up a bit and publish it.
+@BriannaFoxwell and @Cynosphere: Being in calls with me while I was writing this, and helping me test it out.
+
 ## Usage Rules
 
 To respect sp614x's donations please do not:
@@ -86,7 +96,7 @@ An example with pfSense's DNS Forwarder is shown below.
 #### Configs
 
 config.js  
-`// NOTE: I made the configs JS files so I can use comments and JS's styling. `
+// NOTE: I made the configs JS files so I can use comments and JS's styling. `
 ```js 
 module.exports = {
     defaultPrefs: {
@@ -173,13 +183,13 @@ module.exports = {
 Some example data can be found [here](https://github.com/adryd325/optifineProxyData)
 
 capes:  
-/capes/:user.png
+`/capes/:user.png`
 
 user configs:  
-/users/:user.cfg
+`/users/:user.cfg`
 
 models:  
-/items/:model/model.cfg
+`/items/:model/model.cfg`
 
 model textures:  
-/items/:model/users/:user.png
+`/items/:model/users/:user.png`
