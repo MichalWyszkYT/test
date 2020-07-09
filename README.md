@@ -1,17 +1,17 @@
 # optifineProxy
 #### Self-MITM requests to OptiFine's cape server!
-![Screenshot of optifineProxy showing custom capes and player models](https://adryd.co/Esb9G)
+![Screenshot of optifineProxy showing custom capes and player models](https://adryd.co/Esb9G.png)
 > The fox ears player model shown above is originaly by [@Adeon](https://twitter.com/Adeon) and was manually ported to optifineProxy. The bee player model was taken from [optifine.net/items/hat_bee/model.cfg](http://optifine.net/items/hat_bee/model.cfg) and [optifine.net/items/hat_bee/users/sp614x.png](http://optifine.net/items/hat_bee/users/sp614x.png).
 
 ### Inspiration
 
-I originally made this as I didn't like OptiFine's banner capes that much as I felt their higher resolution clashed with Minecraft's style. While developing it I noticed that there were custom configs and custom player models, so I added support for them. Eventually @NotNite convinced me to publish this.
+I originally made this as I didn't like OptiFine's banner capes that much as I felt their higher resolution clashed with Minecraft's style. While developing it I noticed that there were custom configs and custom player models, so I added support for them. Eventually [@NotNite](https://github.com/NotNite) convinced me to publish this.
 
 ### Special thanks
 
-@MStrodl: Helping me with data streams and suggesting Polka and Node-Sharp.
-@NotNite: Convincing me to clean the code up a bit and publish it.
-@BriannaFoxwell and @Cynosphere: Being in calls with me while I was writing this, and helping me test it out.
+[@MStrodl](https://github.com/MStrodl): Helping me with data streams and suggesting Polka and Node-Sharp.  
+[@NotNite](https://github.com/NotNite): Convincing me to clean the code up a bit and publish it.  
+[@BriannaFoxwell](https://github.com/BriannaFoxwell) and [@Cynosphere](https://github.com/Cynosphere): Being in calls with me while I was writing this, and helping me test it out.  
 
 ## Usage Rules
 
