@@ -74,3 +74,106 @@ If you have access to a DNS server, you can create a record pointing `s.optifine
 An example with pfSense's DNS Forwarder is shown below.  
 
 ![Screenshot of pfSense with s.optifine.net pointing to optifineProxy](https://adryd.co/tzvVm)
+
+## Configuration and data
+
+#### Configs
+
+config.js  
+`// NOTE: I made the configs JS files so I can use comments and JS's styling. `
+```js 
+module.exports = {
+    defaultPrefs: {
+        // Blocks banner capes by detecting their size 
+        blockBannerCapes: false, 
+        
+        // Blocks the classic "OF" capes by detecting their size
+        blockClassicCapes: false, 
+        
+        // Blocks custom capes made by sp614x and given to his friends
+        // There's not really an easy way to detect this, so it's done with a hardcoded list
+        blockOFCustomCapes: false,
+        
+        // Blocks custom player models
+        // (s.optifine.net/items/*)
+        blockPlayerModels: false, 
+        
+        // Blocks remote configs
+        // these are used to serve player models, but I'm not sure if they're used for 
+        // anything else, so I made it configurable
+        blockRemoteConfig: false,
+        
+        // Blocks requests otherwise unhandled by the proxy
+        blockUnhandledRequests: true,
+        
+        // Specifies the folder in which capes, models and other data is stored
+        dataFolder: 'data', 
+        
+        // Allows serving of custom models in the data folder
+        allowCustomPlayerModels: true,
+    },
+    
+    // The port that optifineProxy listens on. 
+    // This must be port 80 if it's not behind a proxy
+    listenPort: 8080,
+};
+```
+
+users.js
+```js
+const ipAddresses = {
+    // Depending on one's IP, they are assigned different configs
+    // I seperated IPs from their configs so that one user can have multiple IPs
+    '10.0.0.50': 'adryd',
+    '142.112.151.178': 'adryd',
+    '99.234.33.121': 'example'
+};
+
+const userData = {
+    adryd: {
+        // These config options are the same as in config.js, but they overwrite the defaults for their user
+        blockBannerCapes: true,
+        blockClassicCapes: false,
+        blockOFCustomCapes: true,
+        blockPlayerModels: true,
+        blockRemoteConfig: true,
+        blockUnhandledRequests: true,
+        allowCustomPlayerModels: true,
+        
+        // in this case, "adryd" has a custom data folder where she can put data that doesnt affect others
+        dataFolder: 'customDataFolderName', // custom data folder if user wants seperate capes not visible to others
+        
+        // "adryd" only wants to see capes from the following users.
+        // The whitelist is only enabled if the "whitelist" array contains users
+        whitelist: ['NotNite', 'heatingdevice'],
+    },
+    example: {
+        blockBannerCapes: false,
+        blockClassicCapes: false,
+        blockOFCustomCapes: true,
+        blockPlayerModels: true,
+        blockRemoteConfig: true,
+    },
+};
+
+module.exports = {
+    users: userData,
+    ipAddresses,
+};
+```
+
+#### Data folder
+
+Some example data can be found [here](https://github.com/adryd325/optifineProxyData)
+
+capes: 
+/capes/:user.png
+
+user configs:
+/users/:user.cfg
+
+models:
+/items/:model/model.cfg
+
+model textures:
+/items/:model/users/:user.png
