@@ -85,10 +85,10 @@ polka.get('/capes/:user.png', (req, res) => {
                 imageProcessor.metadata().then((metadata) => {
                     if (metadata.width === capeWidths.classic
                         && !prefs.blockClassicCapes) {
-                        send(res, 200, imageProcessor.png(), png);
+                        send(res, 200, imageProcessor.png(), contentTypes.png);
                     } else if (metadata.width === capeWidths.banner
                             && !prefs.blockBannerCapes) {
-                        send(res, 200, imageProcessor.png(), png);
+                        send(res, 200, imageProcessor.png(), contentTypes.png);
                     } else {
                         // something else
                         notFound(res);
