@@ -103,7 +103,7 @@ polka.get('/capes/:user.png', (req, res) => {
 
 polka.get('/users/:user.cfg', (req, res) => {
     const prefs = getPrefs(req);
-    const path = `${__dirname}/${prefs.dataFolder}/configs/${req.params.user}.cfg`;
+    const path = `${__dirname}/${prefs.dataFolder}/users/${req.params.user}.cfg`;
     if (fs.existsSync(path) && shouldServeCustom(req.params.user, prefs)) {
         serve(path, res, contentTypes.json);
     } else if (config.blockRemoteConfig) {
