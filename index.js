@@ -113,9 +113,9 @@ polka.get('/users/:user.cfg', (req, res) => {
     }
 });
 
-polka.get('/items/:model/:modelName.cfg', (req, res) => {
+polka.get('/items/:model/model.cfg', (req, res) => {
     const prefs = getPrefs(req);
-    const path = `${__dirname}/${prefs.dataFolder}/items/${req.params.model}/${req.params.model}.cfg`;
+    const path = `${__dirname}/${prefs.dataFolder}/items/${req.params.model}/model.cfg`;
     if (fs.existsSync(path)
         && shouldServeCustom(req.params.user, prefs)
         && prefs.allowCustomPlayerModels) {
