@@ -65,20 +65,28 @@ function shouldServeCustom(user, prefs) {
     }
     return true;
 }
+async function fileExists(path) {
+    try {
+        await fs.promises.stat(path);
+        return true;
+    } catch(err) {
+        return false;
+    }
+  }
 
 const polka = Polka();
 
-polka.get('/capes/:user.png', (req, res) => {
+polka.get('/capes/:user.png', async (req, res) => {
     const prefs = getPrefs(req);
     const path = `${__dirname}/${prefs.dataFolder}/capes/${req.params.user}.png`;
-    if (fs.existsSync(path) && shouldServeCustom(req.params.user, prefs)) {
+    if (await fileExists(path) && shouldServeCustom(req.params.user, prefs)) {
         serve(path, res, contentTypes.png);
     } else {
         if (prefs.blockOFCustomCapes
             && OFCustomCapesUsers.includes(req.params.user)) {
             notFound(res);
         }
-        http.get(`http://${optifineHost}/capes/${req.params.user}.png`, (data) => {
+        http.get(`http://${optifineHost}/capes/${req.params.user}.png`, async (data) => {
             if (data.statusCode === 200) {
                 const imageProcessor = sharp();
                 data.pipe(imageProcessor);
@@ -101,10 +109,10 @@ polka.get('/capes/:user.png', (req, res) => {
     }
 });
 
-polka.get('/users/:user.cfg', (req, res) => {
+polka.get('/users/:user.cfg', async (req, res) => {
     const prefs = getPrefs(req);
     const path = `${__dirname}/${prefs.dataFolder}/users/${req.params.user}.cfg`;
-    if (fs.existsSync(path) && shouldServeCustom(req.params.user, prefs)) {
+    if (await fileExists(path) && shouldServeCustom(req.params.user, prefs)) {
         serve(path, res, contentTypes.json);
     } else if (config.blockRemoteConfig) {
         notFound(res);
@@ -113,10 +121,10 @@ polka.get('/users/:user.cfg', (req, res) => {
     }
 });
 
-polka.get('/items/:model/model.cfg', (req, res) => {
+polka.get('/items/:model/model.cfg', async (req, res) => {
     const prefs = getPrefs(req);
     const path = `${__dirname}/${prefs.dataFolder}/items/${req.params.model}/model.cfg`;
-    if (fs.existsSync(path)
+    if (await fileExists(path)
         && shouldServeCustom(req.params.user, prefs)
         && prefs.allowCustomPlayerModels) {
         serve(path, res, contentTypes.json);
@@ -127,10 +135,10 @@ polka.get('/items/:model/model.cfg', (req, res) => {
     }
 });
 
-polka.get('/items/:model/users/:user.png', (req, res) => {
+polka.get('/items/:model/users/:user.png', async (req, res) => {
     const prefs = getPrefs(req);
     const path = `${__dirname}/${prefs.dataFolder}/items/${req.params.model}/users/${req.params.user}.png`;
-    if (fs.existsSync(path)
+    if (await fileExists(path)
         && shouldServeCustom(req.params.user, prefs)
         && prefs.allowCustomPlayerModels) {
         serve(path, res, contentTypes.png);
@@ -141,16 +149,16 @@ polka.get('/items/:model/users/:user.png', (req, res) => {
     }
 });
 
-polka.get('/ipAddress', (req, res) => {
+polka.get('/ipAddress', async (req, res) => {
     send(res, 200, req.headers['x-real-ip']);
 });
 
-polka.get('/myConfig', (req, res) => {
+polka.get('/myConfig', async (req, res) => {
     const prefs = getPrefs(req);
     send(res, 200, prefs, { 'content-type': 'application/json' });
 });
 
-polka.get('/*', (req, res) => {
+polka.get('/*', async (req, res) => {
     const prefs = getPrefs(req);
     if (prefs.blockUnhandledRequests) {
         notFound(res);
