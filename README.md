@@ -1,7 +1,9 @@
 # optifine-proxy
-#### Self-MITM requests to OptiFine's cape & models server!
+**Self-MITM requests to OptiFine's cape & models server!**
 ![Screenshot of optifine-proxy showing custom capes and player models](https://adryd.co/Esb9G.png)
 > The fox ears player model shown above is originaly by [@Adeon](https://twitter.com/Adeon) and was manually ported to optifine-proxy. The bee player model was taken from [optifine.net/items/hat_bee/model.cfg](http://optifine.net/items/hat_bee/model.cfg) and [optifine.net/items/hat_bee/users/sp614x.png](http://optifine.net/items/hat_bee/users/sp614x.png).
+
+## About
 
 ### Inspiration
 
@@ -13,7 +15,7 @@ I originally made this as I didn't like OptiFine's banner capes that much as I f
 [@NotNite](https://github.com/NotNite): Convincing me to clean the code up a bit and publish it.  
 [@BriannaFoxwell](https://github.com/BriannaFoxwell) and [@Cynosphere](https://github.com/Cynosphere): Being in calls with me while I was writing this, and helping me test it out.  
 
-## Usage Rules
+### Usage Rules
 
 To respect sp614x's donations please do not:
  - host public instances.
@@ -30,7 +32,7 @@ Perhaps I should open an issue about this with Minecraft or OptiFine, but oh wel
 
 ## Setup
 
-#### Cloning and starting
+### Cloning and starting
 
 ```sh
 git clone https://github.com/adryd325/optifine-proxy
@@ -40,7 +42,7 @@ npm install
 npm run
 ```
 
-#### Proxy (optional)
+### Proxy (optional)
 
 optifine-proxy runs optimally behind nginx or another proxy that provides the X-Real-IP header, but will work without one.  
 **Without a nginx or an other reverse-proxy, optifine-proxy must run on port 80.**  
@@ -60,9 +62,9 @@ server {
 }
 ```
 
-#### Changing DNS
+### Changing DNS
 
-##### Method 1: Hosts file
+#### Method 1: Hosts file
 
 Add a record to the end of your hosts file (located /etc/hosts on \*nix or C:\WINDOWS\System32\drivers\etc\hosts on Windows) pointing `s.optifine.net` to the IP of your optifine-proxy instance.  
 
@@ -84,7 +86,7 @@ Add a record to the end of your hosts file (located /etc/hosts on \*nix or C:\WI
 142.112.151.178 s.optifine.net
 ```
 
-##### Method 2: DNS Server
+#### Method 2: DNS Server
 
 If you have access to a DNS server, you can create a record pointing `s.optifine.net` to the IP of your optifine-proxy instance.  
 An example with pfSense's DNS Forwarder is shown below.  
@@ -93,7 +95,7 @@ An example with pfSense's DNS Forwarder is shown below.
 
 ## Configuration and data
 
-#### Configs
+### Configs
 
 config.js  
 // NOTE: I made the configs JS files so I can use comments and JS's styling. `
@@ -178,7 +180,7 @@ module.exports = {
 };
 ```
 
-#### Data folder
+### Data folder
 
 capes:  
 `/capes/:user.png`
