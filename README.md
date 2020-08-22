@@ -1,5 +1,5 @@
 # optifine-proxy
-**Self-MITM requests to OptiFine's cape & models server!**
+**Self-MITM requests to OptiFine's cape & models server!**  
 ![Screenshot of optifine-proxy showing custom capes and player models](https://adryd.co/Esb9G.png)
 > The fox ears player model shown above is originaly by [@Adeon](https://twitter.com/Adeon) and was manually ported to optifine-proxy. The bee player model was taken from [optifine.net/items/hat_bee/model.cfg](http://optifine.net/items/hat_bee/model.cfg) and [optifine.net/items/hat_bee/users/sp614x.png](http://optifine.net/items/hat_bee/users/sp614x.png).
 
