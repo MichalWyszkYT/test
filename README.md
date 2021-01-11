@@ -1,3 +1,5 @@
+### THIS PROGRAM IS DEPRECATED, PLEASE DO NOT DM ME OR CONTRIBUTORS FOR SUPPORT.
+
 # optifine-proxy
 **Self-MITM requests to OptiFine's cape & models server!**  
 ![Screenshot of optifine-proxy showing custom capes and player models](https://adryd.co/Esb9G.png)
